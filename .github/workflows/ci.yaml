@@ -1,4 +1,4 @@
-name: CI - Pickup Service
+name: CI - Delivery Service
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
     needs: setup
     uses: ravencalamitouss/devops-central/.github/workflows/build-push.yaml@main
     with:
-      service_name: logistics-pickup
+      service_name: logistics-delivery
       environment: ${{ needs.setup.outputs.environment }}
       branch: ${{ github.ref_name }}
       sha: ${{ github.sha }}
@@ -38,7 +38,7 @@ jobs:
     needs: [setup, build]
     uses: ravencalamitouss/devops-central/.github/workflows/update-helm.yaml@main
     with:
-      service_name: logistics-pickup
+      service_name: logistics-delivery
       environment: ${{ needs.setup.outputs.environment }}
       image_tag: ${{ needs.build.outputs.image_tag }}
     secrets: inherit
